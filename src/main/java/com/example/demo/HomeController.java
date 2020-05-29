@@ -20,6 +20,7 @@ public class HomeController {
 	public String listCars(Model model) {
 		model.addAttribute("cars", carRepository.findAll());
 		//model.addAttribute("car", carRepository.findById(id).get());
+
 		return "index";
 	}
 
@@ -67,6 +68,11 @@ public class HomeController {
 		return "redirect:/";
 	}
 
+	@RequestMapping("/detail/{id}")
+	public String showCourse(@PathVariable("id") long id, Model model) {
+		model.addAttribute("car", carRepository.findById(id).get());
+		return "detail";
+	}
 
 
 

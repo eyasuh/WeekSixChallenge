@@ -59,18 +59,18 @@
     <tr>
         <th>Vehicle type</th> <th>Manufacturer</th><th>Model</th> <th>Year</th> <th>MSRP</th><th>Action</th>
     </tr>
-        <tr th:each="car : ${cars}">
-            <td th:inline="text">[[${car.category.type}]]</td>
-            <td th:inline="text">[[${car.manufacturer}]]</td>
-            <td th:inline="text">[[${car.model}]]</td>
-            <td th:inline="text">[[${car.year}]]</td>
-            <td th:inline="text">$ [[${car.msrp}]]</td>
-            <td>
-<!--                <a th:href="@{/update/{id}(id=${car.id})}">Update</a>-->
-                <a th:href="@{/deleteCar/{id}(id=${car.id})}">Delete</a>
-            </td>
+    <tr th:each="car : ${cars}">
+        <td th:inline="text">[[${car.category.type}]]</td>
+        <td th:inline="text">[[${car.manufacturer}]]</td>
+        <td th:inline="text">[[${car.model}]]</td>
+        <td th:inline="text">[[${car.year}]]</td>
+        <td th:inline="text">$ [[${car.msrp}]]</td>
+        <td>
 
-        </tr>
+            <a th:href="@{/detail/{id}(id=${car.id})}">Detail</a>
+            <a th:href="@{/deleteCar/{id}(id=${car.id})}">Delete</a>
+        </td>
+    </tr>
     
 </table>
 <form>
