@@ -9,18 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <style>
-        html {
-            background: url(https://images.pexels.com/photos/63294/autos-technology-vw-multi-storey-car-park-63294.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat center center fixed;
-            background-size: cover;
-            height: 100%;
-            overflow: hidden;
-        }
-    </style>
-
-    <title>Index</title>
+    <title></title>
 </head>
 <body>
+
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="confirmPage.html">
@@ -34,13 +26,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Listing <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" th:href="@{/}">Listing <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/addCategory}">Add Category</a>
+                    <a class="nav-link" th:href="@{addCategory}">Add Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " th:href="@{/addCar}">Add Car</a>
+                    <a class="nav-link " th:href="@{addCar}">Add Car</a>
                 </li>
             </ul>
         </div>
@@ -48,34 +40,23 @@
 
 </div>
 
-<!--<form>-->
-<!--    <Label for="category">Choose Category</Label>-->
-<!--    <select th:field="categories">-->
-<!--        <option value="select">Select type</option>-->
-<!--        <option th:each="category : ${categories}" th:value="${category.type}"></option>-->
-<!--    </select>-->
-<!--</form>-->
-<table>
-    <tr>
-        <th>Vehicle type</th> <th>Manufacturer</th><th>Model</th> <th>Year</th> <th>MSRP</th><th>Action</th>
-    </tr>
-    <tr th:each="car : ${cars}">
-        <td th:inline="text">[[${car.category.type}]]</td>
-        <td th:inline="text">[[${car.manufacturer}]]</td>
-        <td th:inline="text">[[${car.model}]]</td>
-        <td th:inline="text">[[${car.year}]]</td>
-        <td th:inline="text">$ [[${car.msrp}]]</td>
-        <td>
+<form th:action="@{/processCar}" th:object="${car}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    Year : <br>
+    <input type="text" th:field="*{year}"> <br>
+    Manufacturer : <br>
+    <input type="text" th:field="*{manufacturer}"> <br>
+    Model : <br>
+    <input type="text" th:field="*{model}"> <br>
 
-            <a th:href="@{/update/{id}(id=${car.id})}">Update</a>
-            <a th:href="@{/deleteCar/{id}(id=${car.id})}">Delete</a>
-        </td>
-    </tr>
-    
-</table>
-<form>
-    <a href="/addCategory">Add new category</a>
+    MSRP :<br>
+    <input type="text" th:field="*{msrp}"> <br>
+    <br>
+    <input type="hidden" th:field="*{category.id}">
+    <input type="submit" value="Submit">
+
 </form>
+</div>
 
 
 <!-- Optional JavaScript -->

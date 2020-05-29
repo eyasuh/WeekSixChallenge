@@ -50,8 +50,12 @@ public class HomeController {
 
 	@RequestMapping("/update/{id}")
 	public String updateCar(@PathVariable("id") long id, Model model){
+		//model.addAttribute("allCategory", categoryRepository.findById(id).get());
+
+
+
 		model.addAttribute("car", carRepository.findById(id).get());
-		return "redirect:/addCar";
+		return "update";
 	}
 
 	@RequestMapping("/delete/{id}")
