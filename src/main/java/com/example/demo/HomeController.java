@@ -18,7 +18,8 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String listCars(Model model) {
-		model.addAttribute("categories", categoryRepository.findAll());
+		model.addAttribute("cars", carRepository.findAll());
+		//model.addAttribute("car", carRepository.findById(id).get());
 		return "index";
 	}
 
@@ -47,12 +48,24 @@ public class HomeController {
 	}
 
 	@RequestMapping("/update/{id}")
-	public String update(@PathVariable("id") long id, Model model){
+	public String updateCar(@PathVariable("id") long id, Model model){
 		model.addAttribute("category", categoryRepository.findById(id).get());
+		model.addAttribute("car", carRepository.findById(id).get());
 		return "categoryForm";
 	}
 
-	//@RequestMapping
+	@RequestMapping("/delete/{id}")
+	public String deleteCategory(@PathVariable("id") long id){
+		Category category = categoryRepository.findById(id).get();
+		categoryRepository.delete(category);
+		return "redirect:/";
+	}
+
+	@RequestMapping("/deleteCar/{id}")
+	public String deleteCar(@PathVariable("id") long id) {
+		carRepository.deleteById(id);
+		return "redirect:/";
+	}
 
 
 

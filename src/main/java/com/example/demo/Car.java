@@ -10,6 +10,8 @@ public class Car {
 
 	private String year;
 	private String msrp;
+	private String manufacturer;
+	private String model;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id")
@@ -40,6 +42,22 @@ public class Car {
 
 	public void setMsrp(String msrp) {
 		this.msrp = msrp;
+	}
+
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 
 	public Category getCategory() {

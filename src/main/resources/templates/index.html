@@ -37,10 +37,10 @@
                     <a class="nav-link" href="#">Listing <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Add Category</a>
+                    <a class="nav-link" th:href="@{/addCategory}">Add Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">Add Car</a>
+                    <a class="nav-link " th:href="@{/addCar}">Add Car</a>
                 </li>
             </ul>
         </div>
@@ -55,14 +55,24 @@
 <!--        <option th:each="category : ${categories}" th:value="${category.type}"></option>-->
 <!--    </select>-->
 <!--</form>-->
-<table th:each="category : ${categories}">
+<table>
     <tr>
-        <td th:text="${category.type}"></td>
+        <th>Vehicle type</th> <th>Manufacturer</th><th>Model</th> <th>Year</th> <th>MSRP</th><th>Action</th>
     </tr>
+        <tr th:each="car : ${cars}">
+            <td th:inline="text">[[${car.category.type}]]</td>
+            <td th:inline="text">[[${car.manufacturer}]]</td>
+            <td th:inline="text">[[${car.model}]]</td>
+            <td th:inline="text">[[${car.year}]]</td>
+            <td th:inline="text">$ [[${car.msrp}]]</td>
+            <td>
+<!--                <a th:href="@{/update/{id}(id=${car.id})}">Update</a>-->
+                <a th:href="@{/deleteCar/{id}(id=${car.id})}">Delete</a>
+            </td>
+
+        </tr>
+    
 </table>
-
-or Add new category
-
 <form>
     <a href="/addCategory">Add new category</a>
 </form>
